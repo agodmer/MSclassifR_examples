@@ -25,9 +25,9 @@ require(MSclassifR) ## For spectral easy spectral treatment and machine learning
 ## 3. Vignettes and examples:
 
 Three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
-[*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
-[*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
-[Differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
+- [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
+- [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
+- [Differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
 
 
 ## Download the MSclassifR package: [link](https://cran.r-project.org/web/packages/MSclassifR/index.html)
