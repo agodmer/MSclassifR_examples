@@ -26,7 +26,7 @@ BiocManager::install(c("multtest","mixOmics", "limma", "qvalue"))
 install.packages("MSclassifR")
 
 ## Check after install the `MSclassifR` package:
-require(MSclassifR) ## For spectral easy spectral treatment and machine learning
+require(MSclassifR) ## For spectral easy signal processing and machine learning
 ```
 ## 3. Vignettes and examples:
 
@@ -36,6 +36,6 @@ Three vignettes illustrating how to use the functions of this package from real 
 - [Differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
 
 
-## Download the MSclassifR package: [link](https://cran.r-project.org/web/packages/MSclassifR/index.html)
+### Download the MSclassifR package: [link](https://cran.r-project.org/web/packages/MSclassifR/index.html)
 
 
