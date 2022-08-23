@@ -3,6 +3,8 @@
 [![metacran version](https://www.r-pkg.org/badges/version/MSclassifR)](https://cran.r-project.org/web/packages/MSclassifR/index.html)
 [![cran checks](https://cranchecks.info/badges/worst/MSclassifR)](https://cran.r-project.org/web/checks/check_results_MSclassifR.html)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![visitor badge](https://visitor-badge.glitch.me/badge?page_id=agodmer.MSclassifR_examples)
+
 ## 1. Description:
 
 This package provides R functions to classify mass spectra in known categories, and to determine discriminant mass-over-charge values. It was developed with the aim of identifying very similar species or phenotypes of bacteria from  mass spectra obtained by Matrix Assisted Laser Desorption Ionisation - Time Of Flight Mass Spectrometry (MALDI-TOF MS). However, the different functions of this package can also be used to classify other categories associated to mass spectra; or from mass spectra obtained with other mass spectrometry techniques. It includes easy-to-use functions for pre-processing mass spectra, functions to determine discriminant mass-over-charge values (m/z) from a library of mass spectra corresponding to different categories, and functions to predict the category (species, phenotypes, etc.) associated to a mass spectrum from a list of selected mass-over-charge values. 
@@ -37,5 +39,3 @@ Three vignettes illustrating how to use the functions of this package from real 
 
 
 ### Download the MSclassifR package: [link](https://cran.r-project.org/web/packages/MSclassifR/index.html)
-
-
