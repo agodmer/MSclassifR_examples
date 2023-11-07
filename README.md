@@ -1,9 +1,9 @@
-# MSclassifR
+# MSclassifR: an R Package for Supervised Classification of Mass Spectra with Machine Learning Methods
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/MSclassifR?color=green)](https://cran.r-project.org/web/packages/MSclassifR/index.html)
 [![metacran version](https://www.r-pkg.org/badges/version/MSclassifR)](https://cran.r-project.org/web/packages/MSclassifR/index.html)
-[![cran checks](https://cranchecks.info/badges/worst/MSclassifR)](https://cran.r-project.org/web/checks/check_results_MSclassifR.html)
+[![cran checks](https://badges.cranchecks.info/worst/MSclassifR.svg)](https://cran.r-project.org/web/checks/check_results_MSclassifR.html)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![visitor badge](https://visitor-badge.glitch.me/badge?page_id=agodmer.MSclassifR_examples)
+![visitor badge](https://visitor-badge.lithub.cc/badge?page_id=lizheming.visitor-badge&left_color=red&right_color=green) 
 
 ## 1. Description:
 
@@ -11,6 +11,9 @@ This package provides R functions to classify mass spectra in known categories, 
 <p align="center">
   <img src="Figures/screenMsclassifR_page-0001.jpg" width="500" height="500">
 </p>
+
+
+[![](https://img.shields.io/badge/https://doi.org/10.1101/2022.03.14.484252-blue.svg)](https://doi.org/10.1101/2022.03.14.484252)
 
 ## 2. Installation:
 
