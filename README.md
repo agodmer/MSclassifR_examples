@@ -25,7 +25,7 @@ if (!require("BiocManager", quietly = TRUE))
             install.packages("BiocManager")
 
 ## Install the mixOmics and multtest packages from Bioconductor
-BiocManager::install(c("multtest","mixOmics", "limma", "qvalue"))
+BiocManager::install(c("multtest","mixOmics", "limma", "qvalue", "cp4p"))
 
 ## Install MSclassifR package
 install.packages("MSclassifR")
