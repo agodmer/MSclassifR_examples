@@ -48,7 +48,7 @@ require(MSclassifR) ## For spectral easy signal processing and machine learning
 ## 3. Your Guide to MSclassifR: step-by-step examples and case studies
 - **Understanding the basics:** [a brief introduction concerning machine learning](Documents/ML_intro.md)
 - **Exploring MSclassifR:** [a comprehensive overview of a user-friendly tool for mass spectrometry classification](Documents/MSclassifR_summary.md)
-- **Hands-On Examples:** three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
+- **Hands-on examples:** three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
   - [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
   - [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
   - [differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
