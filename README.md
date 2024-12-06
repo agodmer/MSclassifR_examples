@@ -52,7 +52,7 @@ require(MSclassifR) ## For spectral easy signal processing and machine learning
   - [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
   - [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
   - [differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
-- **Delve deeper into MSclassifR:** [Pre-print article](https://www.biorxiv.org/content/10.1101/2022.03.14.484252v2)
+- **Delve deeper into MSclassifR:** [pre-print article](https://www.biorxiv.org/content/10.1101/2022.03.14.484252v2)
 
 ## 4. Practical workflow using MSclassifR:
 
