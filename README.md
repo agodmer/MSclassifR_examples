@@ -9,8 +9,9 @@
 <p align="center">
   <img src=https://github.com/agodmer/MSclassifR_examples/blob/main/Figures/LogoMSclassifR.jpg width="430" height="250">
 </p>
-
----
+<p align="center">
+  <a href="https://cran.r-project.org/web/packages/MSclassifR/index.html">Click here to download MSclassifR from CRAN</a>
+</p>
 
 ## 1. Description:
 
@@ -19,8 +20,11 @@ This package provides R functions to classify mass spectra in known categories, 
   <img src="Figures/screenMsclassifR_page-0001.jpg" width="500" height="500">
 </p>
 
-
-[![](https://img.shields.io/badge/https://doi.org/10.1101/2022.03.14.484252-blue.svg)](https://doi.org/10.1101/2022.03.14.484252)
+<p align="center">
+  <a href="https://doi.org/10.1101/2022.03.14.484252">
+    <img src="https://img.shields.io/badge/https://doi.org/10.1101/2022.03.14.484252-blue.svg" alt="DOI Badge">
+  </a>
+</p>
 
 ## 2. Installation:
 
@@ -41,16 +45,18 @@ install.packages("MSclassifR")
 require(MSclassifR) ## For spectral easy signal processing and machine learning
 ```
 
-## 3. Practical workflow using MSclassifR
-
-## 4. Vignettes and examples:
-- [A brief introduction concerning machine learning](Documents/ML_intro.md)
-- [MSclassifR: a comprehensive overview of a user-friendly tool for mass spectrometry classification](Documents/MSclassifR_summary.md)
-- Three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
+## 3. Your Guide to MSclassifR: step-by-step examples and case studies
+- **Understanding the basics:** [a brief introduction concerning machine learning](Documents/ML_intro.md)
+- **Exploring MSclassifR:** [a comprehensive overview of a user-friendly tool for mass spectrometry classification](Documents/MSclassifR_summary.md)
+- **Hands-On Examples:** three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
   - [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
   - [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
-  - [Differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
+  - [differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
+- **Delve deeper into MSclassifR:** [Pre-print article](https://www.biorxiv.org/content/10.1101/2022.03.14.484252v2)
 
-### Download the MSclassifR package: [link](https://cran.r-project.org/web/packages/MSclassifR/index.html)
+## 4. Practical workflow using MSclassifR:
 
+<p align="center" style="overflow: hidden; height: 300px; width: auto;">
+  <img src="https://github.com/agodmer/MSclassifR_examples/blob/main/Figures/MSclassifRworkflow.PNG" alt="MSclassifR Workflow" style="object-fit: cover; object-position: top; width: auto; height: 100%;">
+</p>
 ---
