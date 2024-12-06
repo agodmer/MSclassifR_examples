@@ -1,4 +1,5 @@
-# MSclassifR: an R Package for Supervised Classification of Mass Spectra with Machine Learning Methods
+<h1 align="center">MSclassifR: an R Package for Supervised Classification of Mass Spectra with Machine Learning Methods</h1>
+
 [![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/MSclassifR?color=green)](https://cran.r-project.org/web/packages/MSclassifR/index.html)
 [![metacran version](https://www.r-pkg.org/badges/version/MSclassifR)](https://cran.r-project.org/web/packages/MSclassifR/index.html)
 [![cran checks](https://badges.cranchecks.info/worst/MSclassifR.svg)](https://cran.r-project.org/web/checks/check_results_MSclassifR.html)
@@ -6,8 +7,10 @@
 ![visitor badge](https://visitor-badge.lithub.cc/badge?page_id=lizheming.visitor-badge&left_color=red&right_color=green) 
 
 <p align="center">
-  <img src=https://github.com/agodmer/MSclassifR_examples/blob/main/Figures/LogoMSclassifR.jpg width="430" height="270">
+  <img src=https://github.com/agodmer/MSclassifR_examples/blob/main/Figures/LogoMSclassifR.jpg width="430" height="250">
 </p>
+
+---
 
 ## 1. Description:
 
@@ -37,12 +40,17 @@ install.packages("MSclassifR")
 ## Check after install the `MSclassifR` package:
 require(MSclassifR) ## For spectral easy signal processing and machine learning
 ```
-## 3. Vignettes and examples:
 
-Three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
-- [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
-- [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
-- [Differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
+## 3. Practical workflow using MSclassifR
 
+## 4. Vignettes and examples:
+- [A brief introduction concerning machine learning](Documents/ML_intro.md)
+- [MSclassifR: a comprehensive overview of a user-friendly tool for mass spectrometry classification](Documents/MSclassifR_summary.md)
+- Three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
+  - [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
+  - [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
+  - [Differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
 
 ### Download the MSclassifR package: [link](https://cran.r-project.org/web/packages/MSclassifR/index.html)
+
+---
