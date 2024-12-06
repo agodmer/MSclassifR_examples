@@ -1,10 +1,12 @@
 <h1 align="center">MSclassifR: an R Package for Supervised Classification of Mass Spectra with Machine Learning Methods</h1>
 
-[![metacran downloads](https://cranlogs.r-pkg.org/badges/grand-total/MSclassifR?color=green)](https://cran.r-project.org/web/packages/MSclassifR/index.html)
-[![metacran version](https://www.r-pkg.org/badges/version/MSclassifR)](https://cran.r-project.org/web/packages/MSclassifR/index.html)
-[![cran checks](https://badges.cranchecks.info/worst/MSclassifR.svg)](https://cran.r-project.org/web/checks/check_results_MSclassifR.html)
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![visitor badge](https://visitor-badge.lithub.cc/badge?page_id=lizheming.visitor-badge&left_color=red&right_color=green) 
+<div align="center" style="margin-top: 10px;">
+  <a href="https://cran.r-project.org/web/packages/MSclassifR/index.html"><img src="https://cranlogs.r-pkg.org/badges/grand-total/MSclassifR?color=green" alt="Total Downloads"></a>
+  <a href="https://cran.r-project.org/web/packages/MSclassifR/index.html"><img src="https://www.r-pkg.org/badges/version/MSclassifR" alt="Version"></a>
+  <a href="https://cran.r-project.org/web/checks/check_results_MSclassifR.html"><img src="https://badges.cranchecks.info/worst/MSclassifR.svg" alt="CRAN Checks"></a>
+  <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPL v3 License"></a>
+  <img src="https://visitor-badge.lithub.cc/badge?page_id=lizheming.visitor-badge&left_color=red&right_color=green" alt="Visitor Badge">
+</div>
 
 <p align="center">
   <img src=https://github.com/agodmer/MSclassifR_examples/blob/main/Figures/LogoMSclassifR.jpg width="430" height="250">
