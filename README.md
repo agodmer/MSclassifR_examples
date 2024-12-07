@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-  <img src=https://github.com/agodmer/MSclassifR_examples/blob/main/Figures/LogoMSclassifR.jpg width="430" height="250">
+  <img src="Figures/LogoMSclassifR.jpg" width="430" height="250">
 </p>
 <p align="center">
   <a href="https://cran.r-project.org/web/packages/MSclassifR/index.html">Click here to download MSclassifR from CRAN</a>
@@ -61,7 +61,7 @@ require(MSclassifR) ## For spectral easy signal processing and machine learning
 ## 4. Practical workflow using MSclassifR:
 
 <p align="center" style="overflow: hidden; height: 300px; width: auto;">
-  <img src="https://github.com/agodmer/MSclassifR_examples/blob/main/Figures/MSclassifRworkflow.PNG" alt="MSclassifR Workflow" style="object-fit: cover; object-position: top; width: auto; height: 100%;">
+  <img src="Figures/MSclassifRworkflow.PNG" alt="MSclassifR Workflow" style="object-fit: cover; object-position: top; width: auto; height: 100%;">
 </p>
 
 ---
