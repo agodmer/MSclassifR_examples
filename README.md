@@ -60,8 +60,9 @@ require(MSclassifR) ## For spectral easy signal processing and machine learning
 
 ## 4. Practical workflow using MSclassifR:
 
-<p align="center" style="overflow: hidden; height: 300px; width: auto;">
-  <img src="Figures/MSclassifRworkflow.PNG" alt="MSclassifR Workflow" style="object-fit: cover; object-position: top; width: auto; height: 100%;">
+<p align="center" style="max-width: 100%; max-height: 100%;">
+  <img src="Figures/MSclassifRworkflow.PNG" alt="MSclassifR Workflow" 
+       style="max-width: 100%; height: auto; object-fit: contain;">
 </p>
 
 ---
