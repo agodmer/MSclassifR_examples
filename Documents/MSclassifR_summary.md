@@ -1,5 +1,6 @@
 
-# MSclassifR: A Comprehensive Overview of a User-Friendly Tool for Mass Spectrometry Classification
+<h1 align="center">MSclassifR: A Comprehensive Overview of a User-Friendly Tool for Mass Spectrometry Classification</h1>
+Alexandre Godmer, Quentin Giai Gianetto
 
 ## 1. Introduction
 
@@ -8,7 +9,7 @@ MSclassifR is a versatile and user-friendly tool that democratizes access to adv
 
 ---
 
-## 2 Key Functionalities of MSclassifR
+## 2. Key Functionalities of MSclassifR
 
 ### 2.1 Automated Pre-Processing of Mass Spectra
 
@@ -53,7 +54,7 @@ MSclassifR supports a wide range of machine learning algorithms, making it suita
 - **Linear Algorithms**:
   - logistic regression: Ideal for binary or multiclass classification problems.
 - **Non-Linear Algorithms**:
-  - **Support Vector Machines (SVM**)**: effective for both linear and non-linear data separation using kernel tricks (only linear is available on MSclassifR).
+  - **Support Vector Machines (SVM)**: effective for both linear and non-linear data separation using kernel tricks (only linear is available on MSclassifR).
   - **Random Forests (RF)**: ensemble-based decision tree models that offer robust performance on complex datasets.
   - **Neural Networks (nnet)**: implements multilayer perceptrons for capturing intricate patterns in data.
   - **Extreme Gradient Boosting (XGBoost)**: a high-performance gradient boosting method optimized for speed and accuracy.
@@ -73,12 +74,12 @@ These techniques are seamlessly integrated into model training functions like `L
 
 MSclassifR provides extensive tools for evaluating model performance and interpreting results:
 - **Performance Metrics**:
-  - Accuracy, Kappa, F1 Score, Adjusted Rand Index, and Matthews Correlation Coefficient.
-  - Cross-validation methods such as k-fold, repeated k-fold, and leave-one-out cross-validation (LOOCV) ensure reliable performance estimates&#8203;:contentReference[oaicite:4]{index=4}.
+  - accuracy, Kappa, F1 Score, Adjusted Rand Index, and Matthews Correlation Coefficient.
+  - cross-validation methods such as k-fold, repeated k-fold, and leave-one-out cross-validation (LOOCV) ensure reliable performance estimates&#8203;:contentReference[oaicite:4]{index=4}.
 - **Confusion Matrices**:
-  - Summarize predictions versus actual outcomes, offering insights into classification accuracy and errors.
+  - summarize predictions versus actual outcomes, offering insights into classification accuracy and errors.
 - **Visual Metrics**:
-  - Boxplots and summary tables of evaluation metrics allow users to compare models and select the most effective one.
+  - boxplots and summary tables of evaluation metrics allow users to compare models and select the most effective one.
 ---
 ### 2.6 Prediction and Classification
 
@@ -93,9 +94,9 @@ Trained models can be applied to new datasets using functions like `PredictLogRe
 
 MSclassifR includes robust visualization capabilities to aid interpretation:
 - **Spectra Visualization (`PlotSpectra`)**:
-  - Visualizes raw and processed spectra, highlighting detected peaks and discriminant m/z values.
+  - visualizes raw and processed spectra, highlighting detected peaks and discriminant m/z values.
 - **Performance Visualization**:
-  - Displays evaluation metrics, confusion matrices, and feature importance graphs for easy interpretation.
+  - displays evaluation metrics, confusion matrices, and feature importance graphs for easy interpretation.
 
 ---
 
