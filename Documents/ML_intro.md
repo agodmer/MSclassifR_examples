@@ -1,4 +1,8 @@
-# 1. A Brief Introduction concerning Machine Learning 
+<h1 align="center">A Brief Introduction concerning Machine Learning</h1>
+Alexandre Godmer, Quentin Giai Gianetto
+
+---
+
 Machine Learning (ML) is a field within artificial intelligence (AI) that focuses on creating algorithms and models that allow computers to learn from and make predictions or decisions based on data. Unlike traditional programming, where explicit instructions are given for every task, ML enables systems to learn from patterns and insights within data, improving their performance over time as they are exposed to more information.
 
 - There are several types of learning paradigms within ML:
@@ -10,7 +14,7 @@ Machine Learning (ML) is a field within artificial intelligence (AI) that focuse
     - Reinforcement Learning: This type of learning involves an agent interacting with an environment and making decisions to maximize cumulative rewards. Unlike supervised or unsupervised learning, reinforcement learning focuses on learning optimal actions through trial and error, adjusting the strategy based on feedback.
 
 
-## 1.1 Summary Table of some Machine Learning Algorithms
+## 1. Summary Table of some Machine Learning Algorithms
 
 | Algorithm Name                | Type               | Description                                                                                                         |
 |-------------------------------|--------------------|---------------------------------------------------------------------------------------------------------------------|
@@ -25,11 +29,11 @@ Machine Learning (ML) is a field within artificial intelligence (AI) that focuse
 | Multilayer Perceptron (MLP)   | Deep Learning      | Neural network architecture with interconnected layers for solving complex problems.                                |
 | Convolutional Neural Networks (CNN) | Deep Learning | Neural network architecture specialized for processing image data, using convolutional layers to extract features.  |
 
-## 1.2 Metrics for Evaluating Machine Learning Models
+## 2. Metrics for Evaluating Machine Learning Models
 
 Various metrics are used to evaluate machine learning algorithms depending on the type of problem (classification or regression) and the dataset. Below is a summary of commonly used metrics:
 
-### 1.2.1 Classification Metrics for Classification
+### 2.1. Classification Metrics for Classification
 
 | Metric                  | Description                                                                                                 | Use Case                                    |
 |-------------------------|-----------------------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -41,7 +45,7 @@ Various metrics are used to evaluate machine learning algorithms depending on th
 | Cohen's Kappa           | (Observed Agreement - Expected Agreement) / (1 - Expected Agreement)                                       | Measures the agreement between predicted and actual labels, adjusting for chance. |
 | Confusion Matrix        | Layout showing True Positives, True Negatives, False Positives, and False Negatives in a matrix format.   | Summarizes predictions for classification problems. |
 
-### 1.2.2 Multi-class Classification Metrics for Classification
+### 2.2. Multi-class Classification Metrics for Classification
 
 | Metric                  | Formula or Description                                                                     | Use Case                                    |
 |-------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------|
@@ -49,7 +53,7 @@ Various metrics are used to evaluate machine learning algorithms depending on th
 | Macro-averaged F1 Score | Calculates the average F1 score across all classes, treating each class equally.            | Suitable for imbalanced datasets.          |
 | Weighted F1 Score       | Calculates the F1 score, weighted by the number of instances in each class.                 | Accounts for class imbalance in the dataset. |
 
-## 1.3 Machine Learning Process
+## 3. Machine Learning Process
 
 After defining a problem and setting an objective, the steps to resolve the problem using Machine Learning (ML) can be summarized as follows :
 
@@ -67,7 +71,7 @@ After defining a problem and setting an objective, the steps to resolve the prob
 
 By following these structured steps, researchers can build and evaluate effective ML models that are tailored to their specific data and objectives.
 
-## 1.4 A Brief Glossary of Artificial Intelligence
+## 4. A Brief Glossary of Artificial Intelligence
 
 | Name                  | Acronym | Definition                                                                                                                                                                                                                                     |
 |-------------------------------|-----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -98,4 +102,3 @@ By following these structured steps, researchers can build and evaluate effectiv
 
 -------------------------------------------------------
 **Dr Alexandre Godmer, Dr Quentin Giai-Gianetto**
-
