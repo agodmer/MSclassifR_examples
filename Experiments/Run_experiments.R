@@ -259,7 +259,7 @@ download.file(url = "https://zenodo.org/records/15519213/files/MetadataCOVID.RDa
               destfile = "MetadataCOVID.RData",
               mode = "wb"
 )
-load("results_table.RData")
+load("MetadataCOVID.RData")
 # ---- Download and load ShigaTOX metadata ----
 download.file(url = "https://zenodo.org/records/15519213/files/MetadataShigaTOX.RData?download=1",
               destfile = "MetadataShigaTOX.RData",
@@ -273,52 +273,67 @@ download.file(url = "https://zenodo.org/records/15519213/files/SpectraCOVID.RDat
 )
 load("SpectraCOVID.RData")
 # ---- Download and load ShigaTOX spectra ----
+options(timeout = 300)
 download.file(url = "https://zenodo.org/records/15519213/files/SpectraShigaTOX.RData?download=1",
               destfile = "SpectraShigaTOX.RData",
               mode = "wb"
 )
-load("SpectraCOVID.RData")
+
+load("SpectraShigaTOX.RData")
 
 ############### Run Experiments ###################
 
 library(MSclassifR); library(MALDIquant); library(MALDIquantForeign); library(caTools); library(caret);
 
-# Step 1: Generate training/test subsets
+#extracting the strain number for ShigaTOX dataset (to avoid leakage)
+nstrain=as.vector(sapply(MetadataShigaTOX$namesStrain,function(x) unlist(strsplit(x,split="_"))[3]))
+
+#######################
+# Step 1: Generate training/test datasets
+# You have to create a "Results" folder in your working directory before to run the code
 gS2(
-  p = "Results",                      # Output folder where intermediate .rda files will be saved
-  d = spectra_objet,                  # Mass spectra dataset (a MALDIquant object)
-  t = factor(meta$Cible),             # Classification target 
-  r = 0.7,                            # Proportion for training set (e.g., 70%)
-  g = factor(meta$Replicats),         # Grouping factor for replicates (to avoid leakage)
-  sz = length(spectra_objet),         # Size of each subset (can be a vector of sizes)
-  n = 10,                             # Number of repeat samplings for each size
-  tp = 2000e-6,                       # Peak detection tolerance (in m/z)
-  ta = 500e-6                         # Spectra alignment tolerance (in m/z)
+  d = SpectraShigaTOX,                  # Mass spectra dataset (a MALDIquant object)
+  p = "Results",                        # Output folder where intermediate .rda files will be saved
+  t = factor(MetadataShigaTOX$Shigatox),# Classification target 
+  r = 0.7,                              # Proportion for training set (e.g., 70%)
+  g = factor(nstrain),                  # Grouping factor for replicates (to avoid leakage)
+  sz = length(SpectraShigaTOX),         # Size of each subset (can be a vector of sizes)
+  n = 1,                                # Number of repeat samplings for each size
 )
 
-# Step 2: Run machine learning models and evaluate performance
+#######################
+# Step 2: Estimating machine learning models and evaluating their performance from 
+# the generated train and test datasets
 out <- eG(
-  d = spectra_objet,                         # Original spectra dataset
-  mt = c("RFERF", "RFEGlmnet", "sPLSDA", "mda", "cvp"),  # Variable selection methods
+  d = SpectraShigaTOX,                                   # Original spectra dataset
+  p = "Results",                                         # Path to folder with previously saved .rda files
+  mt = c("RFERF", "sPLSDA", "mda", "cvp"),               # Variable selection methods
   md = c("linear", "nnet", "xgb", "rf", "svm"),          # Classification models to evaluate
-  sm = "no",                       # Sampling technique (e.g., up, down, smote, none)
-  n = 10,                                    # Number of dataset splits/repeats
-  sz = c(1),                                 # Subset sizes to evaluate
-  mc = "Kappa",                              # Metric to optimize (e.g., Accuracy, Kappa)
-  mv = "repeatedcv",                         # Validation method (e.g., repeated cross-validation)
-  nm = "ex_run",                             # Identifier/name for the test run
-  mx = 70,                                   # Maximum number of selected variables
-  mn = 5,                                    # Minimum number of selected variables
-  p = "./Results",                           # Path to folder with previously saved .rda files
-  cv = 3,                                    # Number of CV folds
-  rp = 3                                     # Number of CV repetitions
+  sm = c("up","down","smote","none"),                    # Sampling technique (e.g., up, down, smote, none)
+  n = 10,                                                # Number of dataset splits/repeats
+  sz = c(1),                                             # Subset sizes to evaluate
+  mc = "Kappa",                                          # Metric to optimize (e.g., Accuracy, Kappa)
+  mv = "repeatedcv",                                     # Validation method (e.g., repeated cross-validation)
+  nm = "ex_run",                                         # Identifier/name for the test run
+  mx = 70,                                               # Maximum number of selected variables
+  mn = 5,                                                # Minimum number of selected variables
+  cv = 3,                                                # Number of CV folds
+  rp = 3                                                 # Number of CV repetitions
 )
 
-
-
-
-
-
-
-
-
+out <- eG(
+  d = SpectraShigaTOX,                                   # Original spectra dataset
+  p = "Results",                                         # Path to folder with previously saved .rda files
+  mt = c("mda"),               # Variable selection methods
+  md = c("linear", "rf", "svm"),          # Classification models to evaluate
+  sm = c("up","no"),                    # Sampling technique (e.g., up, down, smote, none)
+  n = 10,                                                # Number of dataset splits/repeats
+  sz = c(1),                                             # Subset sizes to evaluate
+  mc = "Kappa",                                          # Metric to optimize (e.g., Accuracy, Kappa)
+  mv = "repeatedcv",                                     # Validation method (e.g., repeated cross-validation)
+  nm = "ex_run",                                         # Identifier/name for the test run
+  mx = 70,                                               # Maximum number of selected variables
+  mn = 5,                                                # Minimum number of selected variables
+  cv = 3,                                                # Number of CV folds
+  rp = 3                                                 # Number of CV repetitions
+)
