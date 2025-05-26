@@ -1,0 +1,324 @@
+################################################################################
+#
+#   Code for section 2 "Experimentation with different datasets"
+#
+################################################################################
+
+
+################################################################################
+#
+#   For academic and non-commercial use only (see LICENSE)
+#
+################################################################################
+
+
+################################################################################
+#
+# gs2: Generating train and test datasets from a mass spectra dataset
+#
+## Arguments:
+#
+# d : Mass spectra dataset (a MALDIquant object)
+# p : Link to the output folder where intermediate .rda files will be saved
+# t : Classification target from metadata (factor object) 
+# r : Proportion for training set (e.g., 70%)
+# g : Grouping factor for replicates to avoid leakage (factor object)
+# sz : Size of each subset (can be a vector of sizes)
+# n : Number of repeat samplings for each size
+# tp : Peak detection tolerance (in m/z)
+# ta : Spectra alignment tolerance (in m/z)
+# sm : Is a seed parameter to be used to generate datasets ? (for reproducibility)
+# sd : If sm is true, the seed to be used for the random generation of the datasets (for reproducibility)
+#
+################################################################################
+
+
+gS2 <- function(d, p, t, r = 0.7, g, sz = c(length(d)), n = 10, tp = 2e-3, ta = 5e-4, sm = FALSE, sd = 1) {
+    
+    for (s in seq_along(sz)) {
+      
+      set.seed(s)
+      
+      i <- try(caTools::sample.split(t, SplitRatio = sz[s], group = g), silent = TRUE)
+      
+      x <- try(d[i], silent = TRUE); 
+      y <- try(t[i], silent = TRUE); 
+      z <- try(g[i], silent = TRUE);
+      
+      if (is.character(i)) { x <- d; y <- t; z <- g ;}
+      
+      h <- if (sm) sd else NULL
+      
+      for (j in seq_len(n)) {
+        
+        if (!sm) set.seed(j) else set.seed(h)
+  
+        ##################
+        # Training dataset    
+        index_train=caTools::sample.split(y, r, group = z)
+        
+        a <- x[index_train]
+        #labels of mass spectra in the train dataset
+        b <- as.factor(y[index_train])
+      
+        # pre-processing of mass spectra
+        sp <- SignalProcessing(a, tolerance_align = ta, alignSpectraMethod = "lowess", alignSpectra_SN = 3)
+        
+        # detection of peaks in pre-processed mass spectra
+        pk <- PeakDetection(sp, averageMassSpec = FALSE, Tolerance = tp)
+        
+        # creating a matrix with intensities of peaks arranged in rows (each column is a mass-to-charge value)
+        # remove missing values in the matrix
+        # normalize peaks according to the maximum intensity value for each mass spectrum
+        im <- MALDIquant::intensityMatrix(pk); im[is.na(im)] <- 0; im <- apply(im, 1, function(u) u / max(u)); m <- t(im)
+
+        #################
+        # Testing dataset
+        xt <- x[!index_train]
+        
+        # pre-processing of mass spectra by aligning on a reference mass spectra
+        rf <- MALDIquant::referencePeaks(pk, method = "strict", minFrequency = 0.7, tolerance = ta)
+        st <- SignalProcessing(xt, referenceSpectra = rf, tolerance_align = ta)
+        
+        # detection of peaks in pre-processed mass spectra in the test dataset
+        pt <- PeakDetection(st, averageMassSpec = FALSE, Tolerance = tp)
+        
+        # labels of mass spectra in the test dataset
+        yt <- as.factor(y[!index_train])
+      
+        save(list = c("a", "b", "m", "rf", "pt", "yt"), file = sprintf("%s/f_%s_%s.rda", p, s, j))
+    }
+  }
+}
+
+
+
+################################################################################
+#
+# eG: Estimating machine learning models and evaluating their performance
+#
+## Arguments:
+#
+# d :  Mass spectra dataset (a MALDIquant object)
+# p : Path to folder with previously saved .rda files
+# mt : Variable selection methods
+# sv : TRUE if a variable selection method is used
+# pf : Is the PredictFastClass function used ? (TRUE or FALSE)
+# md : Classification models to evaluate
+# sm : Sampling technique (e.g., up, down, smote, none)
+# n : Number of dataset splits/repeats
+# sz : Subset sizes to evaluate
+# mc : Metric to optimize (e.g., Accuracy, Kappa)
+# mv : Validation method (e.g., repeated cross-validation)
+# nm : Identifier/name for the test run
+# mx : Maximum number of selected variables
+# mn : Minimum number of selected variables
+# cv : Number of CV folds
+# rp : Number of CV repetitions
+# rs : True is a seed is used to estimate models (for reproducibility)
+#
+################################################################################
+
+
+eG <- function(d, p, mt, sv = TRUE, pf = TRUE, md, sm, n, sz, mc, mv, nm, mx, mn, cv, rp, rs = TRUE) {
+  
+  R <- NULL
+  
+  for (s in seq_along(sz)) {
+    for (i in seq_len(n)) {
+      
+      if (rs) set.seed(i)
+      
+      #load train and test datasets generated by the gs2 function
+      load(paste0(p, "/f_", s, "_", i, ".rda"))
+      #a : mass spectra from train dataset
+      #m : normalized mass spectra from train dataset
+      #pt: peaks in pre-processed mass spectra of the test dataset
+      #rf: reference mass spectra
+      #b : labels of mass spectra in the train dataset
+      #yt: labels of mass spectra in the test dataset
+      
+      u <- length(a) + length(pt)
+      
+      if (sv) {
+        
+         #loop on sampling methods
+         for (sa in sm) {
+           
+             #selecting mass-to-charge values using SelectionVarStat
+             q <- SelectionVarStat(m, b, stat.test = "Limma", pi0.method = "abh", fdr = 0.05, Sampling = sa)
+             v <- q$sel_moz; 
+          
+             if (length(v) == 0) v <- as.numeric(colnames(m))
+          
+             l <- length(v)
+          
+             #loop on kinds of models
+             for (mod in md) {
+              
+                 #estimating the model from the training dataset
+                 m0 <- LogReg(m, b, moz = v, kind = mod, number = cv, repeats = rp, Metric = mc, Sampling = sa)
+            
+                 #predicting categories from the testing dataset using the estimated model
+                 pr <- PredictLogReg(peaks = pt, model = m0$train_mod, moz = v, Reference = yt, toleranceStep = 2)
+            
+                 #Results
+                 R <- rbind(R, c(s, i, u, "SVS", mod, sa, paste("SVS", mod, sa), l, length(a), length(pt),
+                                 pr$Global.stats$Value[which(pr$Global.stats$Statistic.parameter=="Accuracy")],
+                                 pr$Global.stats$Value[which(pr$Global.stats$Statistic.parameter=="Kappa")]
+                                 ))
+             }
+          
+             #using the PredictFastClass approach
+             if (pf) {
+            
+                #predicting categories from the testing dataset using the PredictFastClass approach
+                prf <- PredictFastClass(peaks = pt, mod_peaks = m, moz = v, Y_mod_peaks = b)
+            
+                pcat <- as.factor(prf$pred_cat); levels(pcat) <- levels(yt);
+            
+                cm <- confusionMatrix(yt, pcat)
+            
+                #Results
+                R <- rbind(R, c(s, i, u, "SVS", "PFC", sa, paste("SVS", "PFC", sa), l, length(a), length(pt),
+                            cm$overall["Accuracy"],
+                            cm$overall["Kappa"]
+                            ))
+             }
+          
+         }
+
+      }
+      
+      for (mt1 in mt) {
+        
+          for (sa in sm) {
+            
+              v <- if (mt1 == "noSelectionVar") {
+                
+                      as.numeric(colnames(m))
+                
+                  } else {
+                    
+                      SelectionVar(m, b, MethodSelection = mt1, MethodValidation = mv, NumberCV = cv, RepeatsCV = rp,
+                      Metric = mc, PreProcessing = c("center", "scale", "nzv", "corr"),
+                      Sizes = seq(mn, mx), Sampling = sa)$sel_moz
+                    
+                  }
+              
+              l <- length(v)
+                  
+              #loop on kinds of models
+              for (mod in md) {
+                    
+                  #estimating the model from the training dataset
+                  m0 <- LogReg(m, b, moz = v, kind = mod, number = cv, repeats = rp, Metric = mc, Sampling = sa)
+                  
+                  #predicting categories from the testing dataset using the estimated model
+                  pr <- PredictLogReg(peaks = pt, model = m0$train_mod, moz = v, Reference = yt, toleranceStep = 2)
+                  
+                  #Results
+                  R <- rbind(R, c(s, i, u, mt1, mod, sa, paste(mt1, mod, sa), l, length(a), length(pt),
+                                  pr$Global.stats$Value[which(pr$Global.stats$Statistic.parameter=="Accuracy")],
+                                  pr$Global.stats$Value[which(pr$Global.stats$Statistic.parameter=="Kappa")]
+                       ))
+                      
+              }
+                  
+              if (pf) {
+                    
+                      names(pt) <- seq_along(pt)
+                      
+                      #predicting categories from the testing dataset using the PredictFastClass approach
+                      prf <- PredictFastClass(peaks = pt, mod_peaks = m, moz = v, Y_mod_peaks = b, tolerance = 6)
+                      
+                      pcat <- as.factor(prf$pred_cat); levels(pcat) <- levels(yt)
+                      
+                      cm <- confusionMatrix(yt, pcat)
+                      
+                      #Results
+                      R <- rbind(R, c(s, i, u, mt1, "PFC", sa, paste(mt1, "PFC", sa), l, length(a), length(pt),
+                            cm$overall["Accuracy"],
+                            cm$overall["Kappa"]
+                            ))
+                      
+              }
+              
+          }
+        
+      }
+      
+    }
+  }
+  colnames(R) <- c("r", "k", "n", "m", "alg", "s", "id", "v", "xtr", "xte", "accuracy", "kappa")
+  return(list(res = as.data.frame(R, stringsAsFactors = FALSE)))
+}
+############### Downloads and loads RData datasets from Zenodo. ###################
+# ---- Download and load COVID metadata ----
+download.file(url = "https://zenodo.org/records/15519213/files/MetadataCOVID.RData?download=1",
+              destfile = "MetadataCOVID.RData",
+              mode = "wb"
+)
+load("results_table.RData")
+# ---- Download and load ShigaTOX metadata ----
+download.file(url = "https://zenodo.org/records/15519213/files/MetadataShigaTOX.RData?download=1",
+              destfile = "MetadataShigaTOX.RData",
+              mode = "wb"
+)
+load("MetadataShigaTOX.RData")
+# ---- Download and load COVID spectra ----
+download.file(url = "https://zenodo.org/records/15519213/files/SpectraCOVID.RData?download=1",
+              destfile = "SpectraCOVID.RData",
+              mode = "wb"
+)
+load("SpectraCOVID.RData")
+# ---- Download and load ShigaTOX spectra ----
+download.file(url = "https://zenodo.org/records/15519213/files/SpectraShigaTOX.RData?download=1",
+              destfile = "SpectraShigaTOX.RData",
+              mode = "wb"
+)
+load("SpectraCOVID.RData")
+
+############### Run Experiments ###################
+
+library(MSclassifR); library(MALDIquant); library(MALDIquantForeign); library(caTools); library(caret);
+
+# Step 1: Generate training/test subsets
+gS2(
+  p = "Results",                      # Output folder where intermediate .rda files will be saved
+  d = spectra_objet,                  # Mass spectra dataset (a MALDIquant object)
+  t = factor(meta$Cible),             # Classification target 
+  r = 0.7,                            # Proportion for training set (e.g., 70%)
+  g = factor(meta$Replicats),         # Grouping factor for replicates (to avoid leakage)
+  sz = length(spectra_objet),         # Size of each subset (can be a vector of sizes)
+  n = 10,                             # Number of repeat samplings for each size
+  tp = 2000e-6,                       # Peak detection tolerance (in m/z)
+  ta = 500e-6                         # Spectra alignment tolerance (in m/z)
+)
+
+# Step 2: Run machine learning models and evaluate performance
+out <- eG(
+  d = spectra_objet,                         # Original spectra dataset
+  mt = c("RFERF", "RFEGlmnet", "sPLSDA", "mda", "cvp"),  # Variable selection methods
+  md = c("linear", "nnet", "xgb", "rf", "svm"),          # Classification models to evaluate
+  sm = "no",                       # Sampling technique (e.g., up, down, smote, none)
+  n = 10,                                    # Number of dataset splits/repeats
+  sz = c(1),                                 # Subset sizes to evaluate
+  mc = "Kappa",                              # Metric to optimize (e.g., Accuracy, Kappa)
+  mv = "repeatedcv",                         # Validation method (e.g., repeated cross-validation)
+  nm = "ex_run",                             # Identifier/name for the test run
+  mx = 70,                                   # Maximum number of selected variables
+  mn = 5,                                    # Minimum number of selected variables
+  p = "./Results",                           # Path to folder with previously saved .rda files
+  cv = 3,                                    # Number of CV folds
+  rp = 3                                     # Number of CV repetitions
+)
+
+
+
+
+
+
+
+
+

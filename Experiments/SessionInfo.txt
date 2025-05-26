@@ -1,0 +1,25 @@
+# Session info for experimentation
+R version 4.3.2 (2023-10-31 ucrt)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 11 x64 (build 26100)
+
+Matrix products: default
+
+
+locale:
+[1] LC_COLLATE=French_France.utf8  LC_CTYPE=French_France.utf8    LC_MONETARY=French_France.utf8
+[4] LC_NUMERIC=C                   LC_TIME=French_France.utf8    
+
+time zone: Europe/Paris
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] evalmsclassifr_0.1.0     purrr_1.0.2              lubridate_1.9.3          rbenchmark_1.0.0        
+ [5] stringr_1.5.1            caTools_1.18.3           MALDIquantForeign_0.14.1 MSclassifR_0.3.3        
+ [9] MALDIrppa_1.1.0-1        waveslim_1.8.4           robustbase_0.99-1        signal_1.8-0            
+[13] MALDIquant_1.22.1        statmod_1.5.0            caret_6.0-94             lattice_0.21-9          
+[17] ggplot2_3.5.0            cp4p_0.3.6               limma_3.58.1             qvalue_2.34.0           
+[21] multtest_2.58.0          Biobase_2.62.0           BiocGenerics_0.48.1      MESS_0.5.12   
