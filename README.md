@@ -56,6 +56,10 @@ require(MSclassifR) ## For spectral easy signal processing and machine learning
   - [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
   - [differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
 - **Delve deeper into MSclassifR:** [pre-print article](https://www.biorxiv.org/content/10.1101/2022.03.14.484252v2)
+- **Code and reproducibility resources:**
+    - codes used for the experiments, including scripts, workflows, and configuration files, is publicly available and versioned at this [link](Experiments/README.md)
+    - the computing environment is specified using a [sessionInfo()](Experiments/SessionInfo.txt) output to ensure reproducibility.
+    - input datasets, when not proprietary, are included or clearly referenced in the repository.
 <p align="left">
   <a href="https://doi.org/10.1101/2022.03.14.484252">
     <img src="https://img.shields.io/badge/https://doi.org/10.1101/2022.03.14.484252-blue.svg" alt="DOI Badge">
