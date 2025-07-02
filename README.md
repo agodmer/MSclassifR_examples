@@ -6,6 +6,8 @@
   <a href="https://cran.r-project.org/web/checks/check_results_MSclassifR.html"><img src="https://badges.cranchecks.info/worst/MSclassifR.svg" alt="CRAN Checks"></a>
   <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPL v3 License"></a>
   <img src="https://visitor-badge.lithub.cc/badge?page_id=lizheming.visitor-badge&left_color=red&right_color=green" alt="Visitor Badge">
+  <a href="https://doi.org/10.1016/j.eswa.2025.128796">
+    <img src="https://img.shields.io/badge/https://doi.org/10.1101/2022.03.14.484252-blue.svg" alt="DOI Badge">
 </div>
 
 <p align="center" style="max-width: 100%; max-height: 100%;">
@@ -50,21 +52,26 @@ require(MSclassifR) ## For spectral easy signal processing and machine learning
 
 ## 3. Your Guide to MSclassifR: step-by-step examples and case studies
 - **Understanding the basics:** [a brief introduction concerning machine learning](Documents/ML_intro.md)
+  
 - **Exploring MSclassifR:** [a comprehensive overview of a user-friendly tool for mass spectrometry classification](Documents/MSclassifR_summary.md)
+  
 - **Hands-on examples:** three vignettes illustrating how to use the functions of this package from real data sets are also available online to help users: 
   - [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
   - [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
   - [differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
-- **Delve deeper into MSclassifR:** [pre-print article](https://www.biorxiv.org/content/10.1101/2022.03.14.484252v2)
+    
+- **Delve deeper into MSclassifR:** [article](https://doi.org/10.1016/j.eswa.2025.128796)
+  
 - **Code and reproducibility resources:**
     - codes used for the experiments, including scripts, workflows, and configuration files, is publicly available and versioned at this [link](Experiments/README.md)
     - the computing environment is specified using a [sessionInfo()](Experiments/SessionInfo.txt) output to ensure reproducibility.
     - input datasets, when not proprietary, are included or clearly referenced in the repository.
-<p align="left">
-  <a href="https://doi.org/10.1101/2022.03.14.484252">
-    <img src="https://img.shields.io/badge/https://doi.org/10.1101/2022.03.14.484252-blue.svg" alt="DOI Badge">
-  </a>
-</p>
+      
+- **If you use MSclassifR or any of the code/workflows from this repository, please cite the following article:**
+
+Godmer, A., Benzerara, Y., Varon, E., Veziris, N., Druart, K., Mozet, R., Matondo, M., Aubry, A., & Giai Gianetto, Q. (2025).
+MSclassifR: An R package for supervised classification of mass spectra with machine learning methods.
+Expert Systems with Applications, 294, 128796. https://doi.org/10.1016/j.eswa.2025.128796
 
 ### 🗨️ Forum et Support: do you have any questions or suggestions? Join the discussion on our [forum](https://github.com/agodmer/MSclassifR_examples/discussions).
 
