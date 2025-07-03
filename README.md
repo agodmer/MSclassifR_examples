@@ -2,19 +2,16 @@
 
 <div align="center" style="margin-top: 10px;">
   <a href="https://cran.r-project.org/web/packages/MSclassifR/index.html"><img src="https://cranlogs.r-pkg.org/badges/grand-total/MSclassifR?color=green" alt="Total Downloads"></a>
+   <a href="https://cran.r-project.org/package=MSclassifR"> <img src="https://cranlogs.r-pkg.org/badges/last-week/MSclassifR?color=yellow" alt="Weekly Downloads"> </a>
   <a href="https://cran.r-project.org/web/packages/MSclassifR/index.html"><img src="https://www.r-pkg.org/badges/version/MSclassifR" alt="Version"></a>
   <a href="https://cran.r-project.org/web/checks/check_results_MSclassifR.html"><img src="https://badges.cranchecks.info/worst/MSclassifR.svg" alt="CRAN Checks"></a>
   <a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="GPL v3 License"></a>
-  <img src="https://visitor-badge.lithub.cc/badge?page_id=lizheming.visitor-badge&left_color=red&right_color=green" alt="Visitor Badge">
   <a href="https://doi.org/10.1016/j.eswa.2025.128796">
     <img src="https://img.shields.io/badge/https://doi.org/10.1101/2022.03.14.484252-blue.svg" alt="DOI Badge">
-</div>
-
+</div></a>
+  
 <p align="center" style="max-width: 100%; max-height: 100%;">
   <img src="Figures/LogoMSclassifR.jpg" width="430" height="250">
-</p>
-<p align="center" style="max-width: 100%; max-height: 100%;">
-  <a href="https://cran.r-project.org/web/packages/MSclassifR/index.html">Click here to download MSclassifR from CRAN</a>
 </p>
 
 ## 1. Description
