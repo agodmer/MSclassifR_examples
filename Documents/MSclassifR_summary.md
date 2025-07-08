@@ -4,8 +4,8 @@ Alexandre Godmer, Quentin Giai Gianetto
 
 ## 1. Introduction
 
-MSclassifR was developed with accessibility and flexibility in mind, MSclassifR supports a variety of workflows, integrates cutting-edge algorithms, and provides robust tools for pre-processing, model training, evaluation, and visualization.
-MSclassifR is a versatile and user-friendly tool that democratizes access to advanced mass spectrometry analysis. By integrating comprehensive pre-processing pipelines, sophisticated feature selection methods, and state-of-the-art machine learning algorithms, the package enables users to perform robust and interpretable classification with minimal technical expertise. Its intuitive design and extensive documentation make it an invaluable resource for researchers in proteomics, microbiology, and diagnostics.
+MSclassifR was developed with accessibility and flexibility in mind, MSclassifR supports a variety of workflows, integrates cutting-edge algorithms, and provides tools for pre-processing, model training, evaluation, and visualization.
+MSclassifR is a versatile and user-friendly tool that democratizes access to advanced mass spectrometry analysis. By integrating comprehensive pre-processing pipelines, sophisticated feature selection methods, and state-of-the-art machine learning algorithms, the package enables users to perform interpretable classification of mass spectra using a set of R functions with minimal technical expertise.
 
 ---
 
@@ -31,32 +31,35 @@ These tools automate critical steps, ensuring consistency and reproducibility in
 
 Feature selection is essential for identifying the most informative m/z values that discriminate between categories. MSclassifR provides multiple methods:
 - **Mean Decrease in Accuracy (MDA)**:
-  - calculates variable importance based on the reduction in model accuracy when a specific variable is excluded. This method identifies m/z values that significantly contribute to classification.
+  - Feature selection by thresholding "mda" variable importances estimated from Random Forests using a mixture model (see [our paper](https://doi.org/10.1016/j.eswa.2025.128796)). The `mda` variable importances are calculated using the reduction in model accuracy when a specific variable is excluded. 
 - **Cross-Validated Permutation (CVP)**:
-  - utilizes cross-validation to evaluate variable importance through permuted datasets, ensuring the robustness of selected m/z values. This method is particularly effective for handling noisy data and large datasets.
+  - Feature selection by thresholding "cvp" variable importances estimated from Random Forests using a mixture model (see [our paper](https://doi.org/10.1016/j.eswa.2025.128796)). The `cvp` variable importances are calculated using cross-validations to evaluate variable importances (see [Janitza et al.](https://doi.org/10.1007/s11634-016-0276-4)).
 - **Recursive Feature Elimination (RFE) (`SelectionVar`)**:
-  - combines with random forests or logistic regression to iteratively remove non-essential features.
+  - Combines with either random forests (`RFERF`) or logistic regression (`RFEGlmnet`) to iteratively remove non-essential features.
 - **Sparse Partial Least Squares Discriminant Analysis (sPLSDA) (`SelectionVar`)**:
-  - optimizes feature selection by balancing classification error rates.
+  - Feature selection by selecting variables from the ones kept in latent components of the sparse PLS-DA model using an automatic choice of the number of components (when the balanced classification error rate (BER) reaches a plateau) (see the `mixOmics` R package).
 - **VSURF (Variable Selection Using Random Forests) (`SelectionVar`)**:
-  - selects variables based on their predictive importance, reducing the dataset to its most informative features.
-- **Statistical Methods (`SelectionVarStat`)**:
-  - employs statistical tests (e.g., ANOVA, Kruskal-Wallis, Limma) to identify discriminant m/z values.
-  - controls false discovery rates using Benjamini-Hochberg adjustments.
+  - Selects variables using a three steps variable selection procedure based on random forests (see the `VSURF` R package). 
+- **Boruta (`SelectionVar`)**:
+  - Selects variables using the Boruta algorithm that iteratively compares importances of variables with importances of shadow variables,
+created by shuffling original ones (see the `Boruta` R package).
+- **Multiple statistical tests (`SelectionVarStat`)**:
+  - Selects variables using multiple statistical tests (e.g., ANOVA, Kruskal-Wallis, Limma) to identify discriminant features (m/z values). Features are selected by controlling a false discovery rate threshold using adaptive Benjamini-Hochberg procedures.
 
-These methods ensure the selection of biologically relevant and statistically significant features.
+These methods ensure the selection of statistically significant features.
 
 ---
 
 ### 2.3 Machine Learning Algorithms for Classification
 
 MSclassifR supports a wide range of machine learning algorithms, making it suitable for diverse datasets and classification problems:
-- **Linear Algorithms**:
-  - logistic regression: Ideal for binary or multiclass classification problems.
-- **Non-Linear Algorithms**:
-  - **Support Vector Machines (SVM)**: effective for both linear and non-linear data separation using kernel tricks (only linear is available on MSclassifR).
+- **Parametric models**:
+  - linear logistic regression (PredictLogReg function): standard approach for binary or multiclass classification problems.
+  - minimising Akaike Information Criterium from multiple linear regressions (PredictFastClass function). It can be used to flag a mass spectrum that do not correspond to any of the categories present in the training data set ("p_not_in_DB" score).
+- **Non-parametric models**:
+  - **Support Vector Machines (SVM)**: effective for data separation using kernel tricks (only linear kernels are available in MSclassifR).
   - **Random Forests (RF)**: ensemble-based decision tree models that offer robust performance on complex datasets.
-  - **Neural Networks (nnet)**: implements multilayer perceptrons for capturing intricate patterns in data.
+  - **Neural Networks (nnet)**: feed-forward neural networks with a single hidden layer for capturing intricate patterns in data.
   - **Extreme Gradient Boosting (XGBoost)**: a high-performance gradient boosting method optimized for speed and accuracy.
 ---
 ### 2.4 Resampling Techniques for Imbalanced Data
@@ -64,7 +67,7 @@ MSclassifR supports a wide range of machine learning algorithms, making it suita
 To address challenges posed by imbalanced datasets, MSclassifR incorporates resampling methods:
 - **Up-Sampling**: replicates minority class samples to match the majority class.
 - **Down-Sampling**: reduces majority class samples to match the minority class.
-- **SMOTE (Synthetic minority Over-sampling Technique)**: generates synthetic data points for the minority class using k-nearest neighbors.
+- **SMOTE (Synthetic minority Over-sampling Technique)**: generates synthetic data points for the minority class using k-nearest neighbors ("smote_classif" function).
 
 These techniques are seamlessly integrated into model training functions like `LogReg` and `SelectionVar`, ensuring robust classification results even with imbalanced data.
 
@@ -85,8 +88,9 @@ MSclassifR provides extensive tools for evaluating model performance and interpr
 
 Trained models can be applied to new datasets using functions like `PredictLogReg` and `PredictFastClass`. These functions:
 - match m/z values between the model and input spectra.
-- provide category probabilities and assign predictions based on confidence scores.
+- provide category probabilities that a mass spectrum belongs to a category and assign predictions based on the probabilities.
 - allow for tolerance adjustments to optimize peak matching.
+- can be used to flag mass spectra that do not correspond to any categories in the training dataset ('p_not_in_DB' score in the `PredictFastClass` function).
 
 ---
 
