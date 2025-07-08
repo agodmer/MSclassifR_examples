@@ -30,7 +30,7 @@ This package provides R functions to classify mass spectra in known categories, 
 
 ## 2. Installation
 
-The installation of the `MSclassifR` package requires the installation of packages from `Bioconductor`, so you you might have to install the latest version of the `BiocManager` package. The `MSclassifR` package imports the other necessary packages from the CRAN. In addition, it is recommended to install the latest version of R.
+The installation of the `MSclassifR` package requires the installation of packages from `Bioconductor`, so you might have to install the latest version of the `BiocManager` package. The `MSclassifR` package imports the other necessary packages from the CRAN. In addition, it is recommended to install the latest version of R.
 
 ```
 ## install BiocManager if not installed
@@ -56,11 +56,15 @@ require(MSclassifR) ## For spectral easy signal processing and machine learning
   - [*Ecrobia* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Ecrobiav3.html)
   - [*Klebsiella* sp.](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_Klebsiellav3.html)
   - [differential analysis of omics data](https://agodmer.github.io/MSclassifR_examples/Vignettes/Vignettemsclassifr_DAv3.html)
+ 
+Users typically begin by importing their MALDI-TOF mass spectra into R using the function "MALDIquantForeign::importBrukerFlex(YourPathway)". They then create a dataframe that categorizes each mass spectrum by strain and/or species (see the 'Ecrobia' and 'Klebsiella' vignettes for examples). These categorical assignments are generally determined through Whole Genome Sequencing (WGS) or by evaluating phenotypic antimicrobial sensitivity profiles, depending on the problematic.
+
+Once users have prepared a dataset with these categorical assignments, they can train classification models using their dataset. These models can then be saved and subsequently used to predict categories for new MALDI-TOF mass spectra (avoiding the use of WGS or phenotypic antimicrobial sensitivity profiles).
     
 - **Delve deeper into MSclassifR:** [article](https://doi.org/10.1016/j.eswa.2025.128796)
   
 - **Code and reproducibility resources:**
-    - codes used for the experiments, including scripts, workflows, and configuration files, is publicly available and versioned at this [link](Experiments/README.md)
+    - codes used for the numerical experiments related to the MSclassifR article are publicly available and versioned at this [link](Experiments/README.md). Users can notably adapt the "gs2()" and "eG()" functions of [Run_experiments.R](the https://github.com/agodmer/MSclassifR_examples/blob/main/Experiments/Run_experiments.R) to their problematic.
     - the computing environment is specified using a [sessionInfo()](Experiments/SessionInfo.txt) output to ensure reproducibility.
     - input datasets, when not proprietary, are included or clearly referenced in the repository.
       
