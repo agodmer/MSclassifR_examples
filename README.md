@@ -16,7 +16,7 @@
 
 ## 1. Description
 
-This package provides R functions to classify mass spectra in known categories, and to determine discriminant mass-over-charge values. It was developed with the aim of identifying very similar species or phenotypes of bacteria from  mass spectra obtained by Matrix Assisted Laser Desorption Ionisation - Time Of Flight Mass Spectrometry (MALDI-TOF MS). However, the different functions of this package can also be used to classify other categories associated to mass spectra; or from mass spectra obtained with other mass spectrometry techniques. It includes easy-to-use functions for pre-processing mass spectra, functions to determine discriminant mass-over-charge values (m/z) from a library of mass spectra corresponding to different categories, and functions to predict the category (species, phenotypes, etc.) associated to a mass spectrum from a list of selected mass-over-charge values. 
+This package provides R functions to classify mass spectra in known categories, and to determine discriminant mass-to-charge values. It was developed with the aim of identifying very similar species or phenotypes of bacteria from  mass spectra obtained by Matrix Assisted Laser Desorption Ionisation - Time Of Flight Mass Spectrometry (MALDI-TOF MS). However, the different functions of this package can also be used to classify other categories associated to mass spectra; or from mass spectra obtained with other mass spectrometry techniques. It includes easy-to-use functions for pre-processing mass spectra, functions to determine discriminant mass-to-charge values (m/z) from a library of mass spectra corresponding to different categories, and functions to predict the category (species, phenotypes, etc.) associated to a mass spectrum from a list of selected mass-to-charge values. If you use this package in your research, please cite the associated publication [available here](https://doi.org/10.1016/j.eswa.2025.128796).
 
 <p align="center">
   <img src="Figures/introductionMSclassifR.png"
@@ -70,7 +70,7 @@ Godmer, A., Benzerara, Y., Varon, E., Veziris, N., Druart, K., Mozet, R., Matond
 MSclassifR: An R package for supervised classification of mass spectra with machine learning methods.
 Expert Systems with Applications, 294, 128796. https://doi.org/10.1016/j.eswa.2025.128796
 
-### 🗨️ Forum et Support: do you have any questions or suggestions? Join the discussion on our [forum](https://github.com/agodmer/MSclassifR_examples/discussions).
+### 🗨️ Questions or suggestions? We welcome your feedback! Join the discussion on our [forum](https://github.com/agodmer/MSclassifR_examples/discussions).
 
 ## 4. Practical workflow using MSclassifR
 
