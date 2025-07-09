@@ -64,7 +64,7 @@ Once users have prepared a dataset with these categorical assignments, they can 
 - **Delve deeper into MSclassifR:** [article](https://doi.org/10.1016/j.eswa.2025.128796)
   
 - **Code and reproducibility resources:**
-    - codes used for the numerical experiments related to the MSclassifR article are publicly available and versioned at this [link](Experiments/README.md). Users can notably adapt the "gs2()" and "eG()" functions of [Run_experiments.R](the https://github.com/agodmer/MSclassifR_examples/blob/main/Experiments/Run_experiments.R) to their problematic.
+    - codes used for the numerical experiments related to the MSclassifR article are publicly available and versioned at this [link](Experiments/README.md). Users can notably adapt the ```gs2()``` and ```eG()``` functions of the [Run_experiments.R]( https://github.com/agodmer/MSclassifR_examples/blob/main/Experiments/Run_experiments.R) to their problematic.
     - the computing environment is specified using a [sessionInfo()](Experiments/SessionInfo.txt) output to ensure reproducibility.
     - input datasets, when not proprietary, are included or clearly referenced in the repository.
       
